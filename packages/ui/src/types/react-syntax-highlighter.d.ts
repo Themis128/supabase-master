@@ -1,0 +1,13 @@
+declare module 'react-syntax-highlighter';
+declare module 'react-syntax-highlighter/dist/cjs/languages/hljs/bash';
+declare module 'react-syntax-highlighter/dist/cjs/languages/hljs/csharp';
+declare module 'react-syntax-highlighter/dist/cjs/languages/hljs/dart';
+declare module 'react-syntax-highlighter/dist/cjs/languages/hljs/go';
+declare module 'react-syntax-highlighter/dist/cjs/languages/hljs/http';
+declare module 'react-syntax-highlighter/dist/cjs/languages/hljs/javascript';
+declare module 'react-syntax-highlighter/dist/cjs/languages/hljs/json';
+declare module 'react-syntax-highlighter/dist/cjs/languages/hljs/kotlin';
+declare module 'react-syntax-highlighter/dist/cjs/languages/hljs/php';
+declare module 'react-syntax-highlighter/dist/cjs/languages/hljs/python';
+declare module 'react-syntax-highlighter/dist/cjs/languages/hljs/sql';
+declare module 'react-syntax-highlighter/dist/cjs/languages/hljs/typescript';
