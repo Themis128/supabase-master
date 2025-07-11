@@ -1,3 +1,4 @@
+import React from 'react'
 import Container from 'components/Container'
 import CountUp from 'components/CountUp'
 import CTABanner from 'components/CTABanner/index'
@@ -193,19 +194,25 @@ const Introduction = () => {
           >
             <div className="col-span-4 sm:col-span-4 md:col-span-3 xl:col-span-2">
               <div className="flex items-center justify-center w-12 h-12 rounded-md bg-foreground">
-                {stat.icon}
+                {React.isValidElement(stat.icon) ? stat.icon : null}
               </div>
             </div>
             <div className="col-span-7 sm-col-span-8 text-dark-400 md:col-span-9 xl:col-span-10">
               <p className="text-5xl text-foreground lg:text-6xl">
                 <CountUp triggerAnimOnScroll={true} referenceElId="alphaNumbers">
-                  {stat.value}
+                  {typeof stat.value === 'string' || typeof stat.value === 'number'
+                    ? stat.value
+                    : ''}
                 </CountUp>
-                {stat.unit && <span className="ml-1 text-2xl text-foreground">{stat.unit}</span>}
+                {stat.unit && (typeof stat.unit === 'string' || typeof stat.unit === 'number') && (
+                  <span className="ml-1 text-2xl text-foreground">{stat.unit}</span>
+                )}
               </p>
             </div>
             <div className="col-span-12 col-start-0 sm:col-span-9 sm:col-start-5 md:col-span-10 md:col-start-4 xl:col-start-3">
-              <p className="text-xs text-foreground-lighter lg:text-base">{stat.name}</p>
+              <p className="text-xs text-foreground-lighter lg:text-base">
+                {typeof stat.name === 'string' ? stat.name : ''}
+              </p>
             </div>
           </div>
         ))}
@@ -228,7 +235,7 @@ const TableOfContents = (props: any) => {
           {IntroductionSegments.map((segment: any, segmentIdx: number) => (
             <div key={`introSegment_${segmentIdx}`} className="grid grid-cols-12 col-span-12">
               <div className="col-span-12 mb-10 text-foreground sm:col-span-5 sm:mb-0 xl:col-span-4">
-                <p>{segment.description}</p>
+                <p>{typeof segment.description === 'string' ? segment.description : ''}</p>
               </div>
               <div className="hidden sm:col-span-1 sm:block xl:col-span-2" />
               <div className="flex flex-col col-span-12 sm:col-span-6">
@@ -240,7 +247,7 @@ const TableOfContents = (props: any) => {
                   >
                     <p className="font-mono text-xs text-foreground">{`0${chapter.no}`}</p>
                     <p className="ml-4 text-base text-foreground-light transition border-b border-default hover:text-foreground">
-                      {chapter.name}
+                      {typeof chapter.name === 'string' ? chapter.name : ''}
                     </p>
                   </div>
                 ))}
@@ -300,19 +307,26 @@ const Performance = () => {
           const multiplier = (metric.stats[0].value / metric.stats[1].value).toFixed(1)
           return (
             <div key={`${metric.key}`} className="mb-10 text-foreground-light">
-              <p className="pb-2 mb-4 sm:w-36">{metric.title}</p>
+              <p className="pb-2 mb-4 sm:w-36">
+                {typeof metric.title === 'string' ? metric.title : ''}
+              </p>
               <div className="flex flex-col sm:flex-row sm:items-center">
                 <div className="w-full sm:w-5/6">
                   {metric.stats.map((stat: any, idx: number) => (
                     <div key={`metric_${metric.key}_${idx}`} className="flex items-center">
                       <p className="w-20 py-2 pr-4 mr-4 text-left border-r sm:text-right lg:w-24">
-                        {stat.name}
+                        {typeof stat.name === 'string' ? stat.name : ''}
                       </p>
                       <Bar
                         color={stat.name === 'Supabase' ? 'bg-brand' : 'bg-brand-400'}
                         finalPercentage={Math.ceil((stat.value / maxValue) * 100)}
                       />
-                      <p className="ml-2">{stat.value}/s</p>
+                      <p className="ml-2">
+                        {typeof stat.value === 'string' || typeof stat.value === 'number'
+                          ? stat.value
+                          : ''}
+                        /s
+                      </p>
                     </div>
                   ))}
                 </div>

@@ -5,15 +5,7 @@ import React, { useState } from 'react'
 import { useWindowSize } from 'react-use'
 
 import { useIsLoggedIn, useUser } from 'common'
-import { Button, buttonVariants, cn } from 'ui'
-import {
-  NavigationMenu,
-  NavigationMenuContent,
-  NavigationMenuItem,
-  NavigationMenuLink,
-  NavigationMenuList,
-  NavigationMenuTrigger,
-} from 'ui/src/components/shadcn/ui/navigation-menu'
+import { Button, buttonVariants, cn, NavigationMenu, NavigationMenuContent, NavigationMenuItem, NavigationMenuLink, NavigationMenuList, NavigationMenuTrigger } from 'ui'
 
 import ScrollProgress from '~/components/ScrollProgress'
 import { getMenu } from '~/data/nav'

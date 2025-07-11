@@ -3,7 +3,7 @@ import { useQueryClient } from '@tanstack/react-query'
 import dayjs from 'dayjs'
 import { groupBy, isEqual, isNull } from 'lodash'
 import { ArrowRight, Plus, RefreshCw, Save } from 'lucide-react'
-import { DragEvent, useEffect, useState } from 'react'
+import { DragEvent, useEffect, useState, useCallback } from 'react'
 import { toast } from 'sonner'
 
 import { useParams } from 'common'
@@ -62,7 +62,7 @@ const Reports = () => {
     projectRef: ref,
     type: 'report',
   })
-  const { mutate: upsertContent, isLoading: isSaving } = useContentUpsertMutation({
+  const { mutate: upsertContent, isPending: isSaving } = useContentUpsertMutation({
     onSuccess: (_, vars) => {
       setHasEdits(false)
       if (vars.payload.type === 'report') toast.success('Successfully saved report!')
@@ -98,7 +98,7 @@ const Reports = () => {
     setEndDate(period_end.date)
   }
 
-  function checkEditState() {
+  const checkEditState = useCallback(() => {
     if (config === undefined) return
     /*
      * Shallow copying the config state variable maintains a reference
@@ -136,7 +136,7 @@ const Reports = () => {
     } else {
       setHasEdits(true)
     }
-  }
+  }, [config, currentReportContent])
 
   const handleChartSelection = ({
     metric,
@@ -260,15 +260,15 @@ const Reports = () => {
       (x) => x.provider === 'infra-monitoring' || x.provider === 'daily-stats'
     )
     monitoringCharts?.forEach((x) => {
-      queryClient.invalidateQueries(
-        analyticsKeys.infraMonitoring(ref, {
+      queryClient.invalidateQueries({
+        queryKey: analyticsKeys.infraMonitoring(ref, {
           attribute: x.attribute,
           startDate,
           endDate,
           interval: config?.interval,
           databaseIdentifier: state.selectedDatabaseId,
         })
-      )
+      })
     })
     setTimeout(() => setIsRefreshing(false), 1000)
   }
@@ -350,7 +350,7 @@ const Reports = () => {
 
   useEffect(() => {
     checkEditState()
-  }, [config])
+  }, [config, checkEditState])
 
   if (isLoading) {
     return <Loading />
@@ -361,7 +361,7 @@ const Reports = () => {
   }
 
   return (
-    <div className="flex flex-col space-y-4" style={{ maxHeight: '100%' }}>
+    <div className="flex flex-col space-y-4 max-h-full">
       <div className="flex items-center justify-between">
         <div>
           <h1 className="text-xl text-foreground">{currentReport?.name || 'Reports'}</h1>

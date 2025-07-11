@@ -257,7 +257,7 @@ export * from './src/components/shadcn/ui/sidebar'
 
 // links
 
-export * from './src/components/TextLink'
+export { TextLink } from './src/components/TextLink'
 
 // used for LW
 export * from './src/layout/banners'

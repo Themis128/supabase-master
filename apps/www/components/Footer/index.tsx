@@ -118,39 +118,43 @@ const Footer = (props: Props) => {
           </div>
           <div className="mt-12 grid grid-cols-1 gap-8 xl:col-span-2 xl:mt-0">
             <div className="grid grid-cols-2 gap-8 md:grid-cols-4">
-              {footerData.map((segment) => {
+              {footerData.filter(Boolean).map((segment, segIdx) => {
+                if (!segment || !segment.title || !Array.isArray(segment.links)) return null
                 return (
-                  <div key={`footer_${segment.title}`}>
+                  <div key={`footer_${segment.title || segIdx}`}>
                     <h6 className="text-foreground overwrite text-base">{segment.title}</h6>
                     <ul className="mt-4 space-y-2">
-                      {segment.links.map(({ component: Component, ...link }, idx) => {
+                      {segment.links.filter(Boolean).map((linkObj, idx) => {
+                        if (!linkObj) return null
+                        const { component: Component, text, url } = linkObj
                         const children = (
                           <div
                             className={`text-sm transition-colors ${
-                              link.url || Component
+                              url || Component
                                 ? 'text-foreground-lighter hover:text-foreground'
                                 : 'text-muted hover:text-foreground-lighter'
                             } `}
                           >
-                            {link.text}
-                            {!link.url && !Component && (
+                            {text}
+                            {!url && !Component && (
                               <div className="ml-2 inline text-xs xl:ml-0 xl:block 2xl:ml-2 2xl:inline">
                                 <Badge size="small">Coming soon</Badge>
                               </div>
                             )}
                           </div>
                         )
-
                         return (
-                          <li key={`${segment.title}_link_${idx}`}>
-                            {link.url ? (
-                              link.url.startsWith('https') ? (
-                                <a href={link.url}>{children}</a>
+                          <li key={`${segment.title || segIdx}_link_${idx}`}>
+                            {url ? (
+                              url.startsWith('https') ? (
+                                <a href={url}>{children}</a>
                               ) : (
-                                <Link href={link.url}>{children}</Link>
+                                <Link href={url}>{children}</Link>
                               )
+                            ) : Component ? (
+                              <Component>{children}</Component>
                             ) : (
-                              Component && <Component>{children}</Component>
+                              children
                             )}
                           </li>
                         )

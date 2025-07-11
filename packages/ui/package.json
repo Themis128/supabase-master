@@ -88,6 +88,26 @@
     "next": "^15.3.1"
   },
   "exports": {
+    "./src/components/shadcn/ui/alert": {
+      "import": "./src/components/shadcn/ui/alert.tsx",
+      "require": "./src/components/shadcn/ui/alert.tsx",
+      "types": "./src/components/shadcn/ui/alert.tsx"
+    },
+    "./src/components/shadcn/ui/navigation-menu": {
+      "import": "./src/components/shadcn/ui/navigation-menu.tsx",
+      "require": "./src/components/shadcn/ui/navigation-menu.tsx",
+      "types": "./src/components/shadcn/ui/navigation-menu.tsx"
+    },
+    "./src/components/shadcn/ui/input": {
+      "import": "./src/components/shadcn/ui/input.tsx",
+      "require": "./src/components/shadcn/ui/input.tsx",
+      "types": "./src/components/shadcn/ui/input.tsx"
+    },
+    "./src/components/shadcn/ui/label": {
+      "import": "./src/components/shadcn/ui/label.tsx",
+      "require": "./src/components/shadcn/ui/label.tsx",
+      "types": "./src/components/shadcn/ui/label.tsx"
+    },
     ".": {
       "import": "./index.tsx",
       "require": "./index.tsx",

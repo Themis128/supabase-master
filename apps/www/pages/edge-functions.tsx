@@ -5,7 +5,9 @@ import { NextSeo } from 'next-seo'
 import { useBreakpoint } from 'common'
 
 import { PRODUCT_NAMES, PRODUCT_SHORTNAMES } from 'shared-data/products'
-import page from '~/data/products/functions/page'
+import pageData from '~/data/products/functions/page'
+import { Globe, Shield, Braces, Cloud } from 'lucide-react'
+import { JsIcon, PythonIcon, SwiftIcon, FlutterIcon } from '~/components/svg-icons'
 
 import DefaultLayout from '~/components/Layouts/Default'
 import SectionContainer from '~/components/Layouts/SectionContainer'
@@ -27,7 +29,26 @@ const TimedAccordionSection = dynamic(() => import('~/components/Sections/TimedA
 function EdgeFunctions() {
   const { basePath } = useRouter()
   const isXs = useBreakpoint(640)
-  const pageData = page(isXs)
+  // pageData is now imported as an object, not a function
+
+  // Map svg string keys to actual React components for highlightsSection
+  const svgMap = {
+    FullyManaged: Cloud, // Substitute with the closest Lucide or custom icon
+    Globe: Globe,
+    SecureScalable: Shield,
+    NodeSupport: Braces, // Substitute with the closest Lucide or custom icon
+    JsIcon: JsIcon,
+    PythonIcon: PythonIcon,
+    SwiftIcon: SwiftIcon,
+    FlutterIcon: FlutterIcon,
+  }
+
+  const highlightsWithComponents = (pageData.highlightsSection || [])
+    .map((item) => ({
+      ...item,
+      svg: item.svg && svgMap[item.svg] ? React.createElement(svgMap[item.svg]) : null,
+    }))
+    .filter((item) => item && typeof item.title === 'string' && item.title.length > 0)
 
   return (
     <>
@@ -49,7 +70,7 @@ function EdgeFunctions() {
         <ProductsNav activePage={PRODUCT_NAMES.FUNCTIONS} />
         <ProductHeader
           {...pageData.heroSection}
-          footer={<HighlightColumns highlights={pageData.highlightsSection.highlights} />}
+          footer={<HighlightColumns highlights={highlightsWithComponents} />}
         />
         <SingleQuote
           id="quote"

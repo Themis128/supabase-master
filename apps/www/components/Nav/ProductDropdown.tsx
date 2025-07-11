@@ -6,7 +6,7 @@ import { ChevronRight, Sparkles } from 'lucide-react'
 
 import { useBreakpoint } from 'common'
 import { TextLink } from 'ui'
-import { NavigationMenuLink } from 'ui/src/components/shadcn/ui/navigation-menu'
+import { NavigationMenuLink } from 'ui'
 import MenuItem from './MenuItem'
 
 import ComparisonsData from '~/data/Comparisons'

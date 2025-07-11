@@ -165,7 +165,7 @@ const footerData = [
       },
       {
         text: 'Privacy Settings',
-        component: 'privacy-settings',
+        component: PrivacySettings,
       },
       {
         text: 'Acceptable Use Policy',

@@ -4,8 +4,7 @@ import { TrendingUp } from 'lucide-react'
 import { Area, AreaChart, CartesianGrid, XAxis, YAxis } from 'recharts'
 
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from 'ui'
-import { ChartContainer, ChartTooltip, ChartTooltipContent } from 'ui'
-import type { ChartConfig } from 'ui/src/types/chart-config'
+import { ChartConfig, ChartContainer, ChartTooltip, ChartTooltipContent } from 'ui'
 
 export const description = 'An area chart with axes'
 

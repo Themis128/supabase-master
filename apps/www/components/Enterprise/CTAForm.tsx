@@ -7,7 +7,7 @@ import RequestADemoForm from '../Forms/RequestADemoForm'
 
 interface Props {}
 
-const UseCases: FC<Props> = (props) => {
+const CTAForm: FC<Props> = (props) => {
   return (
     <SectionContainer className="text grid gap-8 lg:gap-12 md:grid-cols-2">
       <div className="lg:pb-8 md:h-full w-full flex flex-col justify-between gap-2">
@@ -89,4 +89,4 @@ const UseCases: FC<Props> = (props) => {
   )
 }
 
-export default UseCases
+export default CTAForm
