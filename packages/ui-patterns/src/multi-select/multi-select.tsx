@@ -447,6 +447,8 @@ const MultiSelectorList = React.forwardRef<
     .filter((x: any) => !!x.props.value)
     .map((x: any) => x.props.value.toLowerCase())
   const isOptionExists = availableOptions.some((x: string) => x === inputValue.toLowerCase())
+
+  return (
     <CommandList
       ref={ref}
       id="multi-selector-listbox"
@@ -455,8 +457,6 @@ const MultiSelectorList = React.forwardRef<
         'scrollbar-thumb-muted-foreground dark:scrollbar-thumb-muted',
         'scrollbar-thumb-rounded-lg w-full max-h-[300px] overflow-y-auto',
         className
-      )}
-    >
       )}
     >
       {children}
