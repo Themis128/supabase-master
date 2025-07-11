@@ -12,9 +12,15 @@ interface Metadata {
 export interface HeroSection {
   id: string
   title: string
-  h1: JSX.Element
-  subheader: JSX.Element[]
-  image: JSX.Element
+  h1: string
+  subheader: string[]
+  image: {
+    dark: string
+    light: string
+    alt: string
+    width: number
+    height: number
+  }
   className?: string
   sectionContainerClassName?: string
   icon?: string
@@ -27,7 +33,7 @@ export interface HeroSection {
     name: string
     image: string
   }[]
-  footer?: React.ReactNode
+  footer?: string
   footerPosition?: 'left' | 'right'
 }
 
@@ -35,7 +41,7 @@ export interface Quote {
   icon?: string
   author: string
   authorTitle?: string
-  quote: JSX.Element
+  quote: string
   avatar: string
 }
 
@@ -55,9 +61,17 @@ export interface Feature {
   id?: string
   icon?: IconType | string
   iconNoStroke?: boolean
-  heading: string | JSX.Element
-  subheading: string | JSX.Element
-  img?: JSX.Element
+  heading: string
+  subheading: string
+  img?: {
+    dark?: string
+    light?: string
+    alt?: string
+    width?: number
+    height?: number
+    svg?: boolean
+    description?: string
+  }
 }
 
 export interface FeaturesSection {
@@ -85,7 +99,7 @@ export interface Testimonials {
 interface CTASection {
   id: string
   label: string
-  heading: JSX.Element | string
+  heading: string
   subheading: string
   cta: {
     label: string

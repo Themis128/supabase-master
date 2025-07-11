@@ -8,10 +8,10 @@ interface Highlight {
   paragraph: string | React.ReactNode
 }
 
-const HighlightColumns = ({ highlights }: { highlights: Highlight[] }) => {
+const HighlightColumns = ({ highlights = [] }: { highlights?: Highlight[] }) => {
   return (
     <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-8 xl:gap-32">
-      {highlights.map((highlight, i) => (
+      {(highlights || []).map((highlight, i) => (
         <Highlight highlight={highlight} key={highlight.title} />
       ))}
     </div>

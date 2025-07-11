@@ -2,25 +2,10 @@ import MainProducts from '~/data/MainProducts'
 import VideoWithHighlights from '~/components/VideoWithHighlights'
 import ProductModules from '../ProductModules'
 
-export default {
+const homeContent = {
   heroSection: {
-    heading: (
-      <>
-        <span className="block text-[#F4FFFA00] bg-clip-text bg-gradient-to-b from-foreground to-foreground-light">
-          Build in a weekend
-        </span>
-        <span className="text-transparent bg-clip-text bg-gradient-to-br from-[#3ECF8E] via-[#3ECF8E] to-[#3ecfb2] block md:ml-0">
-          Scale to millions
-        </span>
-      </>
-    ),
-    subheading: (
-      <>
-        Supabase is the Postgres development platform. <br className="hidden md:block" />
-        Start your project with a Postgres database, Authentication, instant APIs, Edge Functions,
-        Realtime subscriptions, Storage, and Vector embeddings.
-      </>
-    ),
+    heading: 'Build in a weekend. Scale to millions.',
+    subheading: 'Supabase is the Postgres development platform. Start your project with a Postgres database, Authentication, instant APIs, Edge Functions, Realtime subscriptions, Storage, and Vector embeddings.',
     image: '/images/index/gradient-bg.png',
     cta: {
       label: 'Start your project',
@@ -161,3 +146,5 @@ export default {
     ],
   },
 }
+
+export default homeContent

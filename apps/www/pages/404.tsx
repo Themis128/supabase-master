@@ -7,8 +7,8 @@ import DefaultLayout from '../components/Layouts/Default'
 
 import { useTheme } from 'next-themes'
 
-import * as supabaseLogoWordmarkDark from 'common/assets/images/supabase-logo-wordmark--dark.png'
-import * as supabaseLogoWordmarkLight from 'common/assets/images/supabase-logo-wordmark--light.png'
+import supabaseLogoWordmarkDark from 'common/assets/images/supabase-logo-wordmark--dark.png'
+import supabaseLogoWordmarkLight from 'common/assets/images/supabase-logo-wordmark--light.png'
 
 const Error404 = () => {
   const [show404, setShow404] = useState<boolean>(false)
@@ -60,7 +60,7 @@ const Error404 = () => {
           <div className="text-foreground flex w-[320px] flex-col items-center justify-center space-y-3">
             <h1 className="m-2 text-2xl">Looking for something? 🔍</h1>
             <p className="text-center text-sm">
-              We couldn't find the page that you're looking for!
+              We couldn&apos;t find the page that you&apos;re looking for!
             </p>
           </div>
           <div className="flex items-center space-x-4">

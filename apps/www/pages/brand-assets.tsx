@@ -6,7 +6,7 @@ import Layout from '~/components/Layouts/Default'
 
 import { useRouter } from 'next/router'
 
-import * as supabaseLogoPreview from 'common/assets/images/logo-preview.jpg'
+import supabaseLogoPreview from 'common/assets/images/logo-preview.jpg'
 import { Download } from 'lucide-react'
 import { NextSeo } from 'next-seo'
 import Image from 'next/image'
@@ -101,7 +101,7 @@ const Index = () => {
                         >
                           Supabase Integration
                         </a>
-                        , use this "Connect Supabase" button to initiate the OAuth redirect.
+                        , use this &quot;Connect Supabase&quot; button to initiate the OAuth redirect.
                       </p>
                       <p>Do not use any other color for the wordmark.</p>
                     </p>

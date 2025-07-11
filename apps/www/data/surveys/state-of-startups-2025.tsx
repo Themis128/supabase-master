@@ -1,4 +1,4 @@
-export default (isMobile?: boolean) => ({
+const getSurveyData = (isMobile?: boolean) => ({
   metaTitle: 'State of Startups 2025',
   metaDescription:
     'Take the survey and learn the latest trends among builders in tech stacks, AI usage, problem domains, and more.',
@@ -6,13 +6,9 @@ export default (isMobile?: boolean) => ({
   docsUrl: '',
   heroSection: {
     title: 'State of Startups 2025',
-    subheader: (
-      <>
-        There's never been a better time to build.
-        <br />
-        Take our State of Startups survey and tell us how you're building.
-      </>
-    ),
+    subheader: "There's never been a better time to build. Take our State of Startups survey and tell us how you're building.",
     className: '[&_h1]:max-w-2xl',
   },
 })
+
+export default getSurveyData

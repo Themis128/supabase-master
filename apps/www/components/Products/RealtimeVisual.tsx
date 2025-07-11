@@ -1,6 +1,6 @@
 import React, { useRef, useState } from 'react'
 import Image from 'next/image'
-import { isBrowser, useReducedMotion } from 'common'
+import { isBrowser } from 'common'
 import { cn } from 'ui'
 interface Props {
   className?: string
@@ -11,7 +11,7 @@ const RealtimeVisual: React.FC<Props> = ({ className }) => {
   const [svgTransformSelf, setSvgTransformSelf] = useState<string>('translate(0px, 0px)')
   const [svgTransform, setSvgTransform] = useState<string>('translate(0px, 0px)')
   const [svgTransform2, setSvgTransform2] = useState<string>('translate(0px, 0px)')
-  const reduceMotion = isBrowser && useReducedMotion()
+  // const reduceMotion = isBrowser && useReducedMotion()
 
   const handleMouseMove = (event: React.MouseEvent<HTMLDivElement>) => {
     if (cardRef.current) {
@@ -49,7 +49,7 @@ const RealtimeVisual: React.FC<Props> = ({ className }) => {
       )}
       role="img"
       aria-label="Supabase Realtime multiplayer app demo"
-      onMouseMove={reduceMotion ? undefined : handleMouseMove}
+      onMouseMove={handleMouseMove}
       onMouseLeave={handleMouseLeave} // Reset on mouse leave
     >
       <Image

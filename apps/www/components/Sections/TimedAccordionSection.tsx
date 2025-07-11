@@ -78,7 +78,7 @@ interface Props {
   updateFrequency?: number
 }
 
-const TimedAccordionSection = ({ tabs, intervalDuration = 25, updateFrequency = 10 }: Props) => {
+const TimedAccordionSection = ({ tabs = [], intervalDuration = 25, updateFrequency = 10 }: Props) => {
   const ref = useRef(null)
   const isInView = useInView(ref, { margin: '-25%' })
   const [activeTab, setActiveTab] = useState(0)
@@ -138,7 +138,7 @@ const TimedAccordionSection = ({ tabs, intervalDuration = 25, updateFrequency = 
   return (
     <div ref={ref} className="flex flex-col lg:flex-row gap-8 xl:gap-24 justify-between">
       <div className="lg:w-1/3 gap-1 flex flex-col items-start" role="tablist">
-        {tabs.map((tab, index) => (
+        {(tabs || []).map((tab, index) => (
           <Tab
             key={index}
             isActive={index === activeTab}
@@ -162,7 +162,7 @@ const TimedAccordionSection = ({ tabs, intervalDuration = 25, updateFrequency = 
           speed={300}
           allowTouchMove={isMobile}
         >
-          {tabs.map((tab, i) => (
+          {(tabs || []).map((tab, i) => (
             <SwiperSlide key={i} className="md:p-4">
               {tab.panel}
             </SwiperSlide>

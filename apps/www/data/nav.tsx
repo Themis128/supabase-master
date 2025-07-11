@@ -9,14 +9,14 @@ export const getMenu = () => ({
     {
       title: 'Product',
       hasDropdown: true,
-      dropdown: <ProductDropdown />,
+      dropdown: 'ProductDropdown',
       dropdownContainerClassName: 'rounded-xl',
       subMenu: MainProductsData,
     },
     {
       title: 'Developers',
       hasDropdown: true,
-      dropdown: <DevelopersDropdown />,
+      dropdown: 'DevelopersDropdown',
       dropdownContainerClassName: 'rounded-xl',
       subMenu: DevelopersData,
     },

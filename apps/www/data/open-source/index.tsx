@@ -1,19 +1,13 @@
 import { products, PRODUCT_MODULES } from 'shared-data'
 
-export default {
+const openSourceData = {
   metaTitle: 'Supabase Open Source Community',
   metaDescription:
     'Supabase is an open source company, actively fostering collaboration and supporting existing open source tools and communities.',
   heroSection: {
     title: 'The Power of Collaboration',
-    h1: <span className="heading-gradient">Open Source Community</span>,
-    subheader: (
-      <>
-        Supabase is an open source company, actively fostering collaboration
-        <br className="hidden md:inline" /> and supporting existing open source tools and
-        communities.
-      </>
-    ),
+    h1: 'Open Source Community',
+    subheader: 'Supabase is an open source company, actively fostering collaboration and supporting existing open source tools and communities.',
   },
   repo_tabs: [
     {
@@ -193,3 +187,5 @@ export default {
     },
   ],
 }
+
+export default openSourceData

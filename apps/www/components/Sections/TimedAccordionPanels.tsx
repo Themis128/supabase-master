@@ -103,13 +103,16 @@ interface Props {
   isInView?: boolean
 }
 
-const TimedAccordionPanels = ({ panels, intervalDuration = 10, updateFrequency = 10 }: Props) => {
+const TimedAccordionPanels = ({ panels = [], intervalDuration = 10, updateFrequency = 10 }: Props) => {
   const ref = useRef(null)
   const isInView = useInView(ref, { margin: '-25%' })
   const [activeTab, setActiveTab] = useState(0)
   const [progress, setProgress] = useState(0)
   const [apiSwiper, setApiSwiper] = useState(undefined)
   const controls = useAnimation()
+
+  // Defensive: filter out any non-object values from panels
+  const safePanels = Array.isArray(panels) ? panels.filter(p => p && typeof p === 'object') : [];
 
   useEffect(() => {
     if (!apiSwiper) return
@@ -162,7 +165,7 @@ const TimedAccordionPanels = ({ panels, intervalDuration = 10, updateFrequency =
   return (
     <div ref={ref} className="flex flex-col gap-8 xl:gap-32 justify-between">
       <div className="hidden md:flex gap-4" role="tablist">
-        {panels.map((panel, index) => (
+        {safePanels.map((panel, index) => (
           <TimedPanel
             key={index}
             isActive={index === activeTab}
@@ -185,7 +188,7 @@ const TimedAccordionPanels = ({ panels, intervalDuration = 10, updateFrequency =
           slidesPerView={1.1}
           speed={300}
         >
-          {panels.map((panel, index) => (
+          {safePanels.map((panel, index) => (
             <SwiperSlide key={index}>
               <TimedPanel
                 isActive={index === activeTab}

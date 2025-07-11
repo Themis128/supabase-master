@@ -8,8 +8,8 @@ import { DEFAULT_EASE } from '~/lib/animations'
 import MenuItem from './MenuItem'
 
 import { useIsLoggedIn, useIsUserLoading } from 'common'
-import * as supabaseLogoWordmarkDark from 'common/assets/images/supabase-logo-wordmark--dark.png'
-import * as supabaseLogoWordmarkLight from 'common/assets/images/supabase-logo-wordmark--light.png'
+import supabaseLogoWordmarkDark from 'common/assets/images/supabase-logo-wordmark--dark.png'
+import supabaseLogoWordmarkLight from 'common/assets/images/supabase-logo-wordmark--light.png'
 import { ChevronRight } from 'lucide-react'
 import { useKey } from 'react-use'
 import staticContent from '~/.contentlayer/generated/staticContent/_index.json' with { type: 'json' }

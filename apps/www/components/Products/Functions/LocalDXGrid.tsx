@@ -16,7 +16,7 @@ export default function LocalDXGrid() {
         styles['local-dx-grid']
       )}
     >
-      {pageData.localDXsection.cards.map((card) => (
+      {(pageData.localDXsection.cards || []).map((card) => (
         <Content key={card.id} card={card} />
       ))}
     </div>

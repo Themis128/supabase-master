@@ -18,7 +18,7 @@ const data = {
           label: 'Open GitHub Issue',
           link: 'https://github.com/supabase/supabase/issues',
           target: '_blank',
-          icon: <IconGitHubSolid />,
+          icon: "github",
           type: 'default',
         },
       ],
@@ -31,7 +31,7 @@ const data = {
           label: 'Request feature',
           link: 'https://github.com/orgs/supabase/discussions/categories/feature-requests',
           target: '_blank',
-          icon: <IconGitHubSolid />,
+          icon: "github",
           type: 'default',
         },
       ],
@@ -45,14 +45,14 @@ const data = {
           label: 'Ask a question',
           link: 'https://github.com/supabase/supabase/discussions',
           target: '_blank',
-          icon: <IconDiscussions />,
+          icon: "discussions",
           type: 'default',
         },
         {
           label: 'Join Discord',
           link: 'https://discord.supabase.com/',
           target: '_blank',
-          icon: <IconDiscord fill="hsl(var(--background-default))" />,
+          icon: "discord",
           type: 'secondary',
         },
       ],
@@ -61,15 +61,7 @@ const data = {
   ],
   banner: {
     title: "Can't find what you're looking for?",
-    paragraph: (
-      <>
-        <p className="text-foreground-light">The Supabase Support Team is ready to help.</p>
-        <p className="text-foreground-lighter text-sm">
-          Response time for support tickets will vary depending on plan type and severity of the
-          issue.
-        </p>
-      </>
-    ),
+    paragraph: "The Supabase Support Team is ready to help. Response time for support tickets will vary depending on plan type and severity of the issue.",
     links: [
       {
         label: 'Contact Enterprise Sales',
@@ -81,7 +73,7 @@ const data = {
         label: 'Open Ticket',
         link: 'https://supabase.com/dashboard/support/new',
         target: '_blank',
-        icon: <ArrowUpRight />,
+        icon: "arrow-up-right",
         className: '!text-foreground-light hover:!text-foreground',
         type: 'text',
       },

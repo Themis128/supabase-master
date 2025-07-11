@@ -41,36 +41,25 @@ const data = {
     ),
     h1: 'Neon users switch to Supabase for a complete Postgres experience',
     subheader: [
-      <>
-        Supabase is a composable stack for modern applications: Postgres Database, built-in Auth,
-        Real-time sync, Edge Functions, Storage, and a powerful developer experience.
-      </>,
-      <>
-        Supabase is the preferred foundation for high-performance, high-scale SaaS, AI-native apps,
-        data-intensive tools, and more.
-      </>,
+      'Supabase is a composable stack for modern applications: Postgres Database, built-in Auth, Real-time sync, Edge Functions, Storage, and a powerful developer experience.',
+      'Supabase is the preferred foundation for high-performance, high-scale SaaS, AI-native apps, data-intensive tools, and more.'
     ],
     ctas: [
       {
         label: 'Start your migration',
         href: 'https://supabase.com/docs/guides/platform/migrating-to-supabase/neon',
-        type: 'primary' as any,
-        icon: <ArrowUpRight className="w-4 h-4 text-current" />,
+        type: 'primary',
+        icon: 'ArrowUpRight',
       },
     ],
-    image: (
-      <Image
-        draggable={false}
-        src={{
-          dark: '/images/solutions/neon/neon-hero-dark.svg',
-          light: '/images/solutions/neon/neon-hero-light.svg',
-        }}
-        alt="Neon to Supabase illustration"
-        width={1000}
-        height={1000}
-        className="max-w-[500px] max-h-[400px] m-auto"
-      />
-    ),
+    image: {
+      dark: '/images/solutions/neon/neon-hero-dark.svg',
+      light: '/images/solutions/neon/neon-hero-light.svg',
+      alt: 'Neon to Supabase illustration',
+      width: 1000,
+      height: 1000,
+      className: 'max-w-[500px] max-h-[400px] m-auto',
+    },
   },
   quote: {
     id: 'quote',
@@ -78,42 +67,32 @@ const data = {
     text: 'We wanted a backend that could accelerate our development while maintaining security and scalability. Supabase stood out due to its automation, integrations, and ecosystem.',
     author: 'Raunak Kathuria',
     role: 'VP of Engineering, Deriv',
-    avatar: (
-      <Image
-        draggable={false}
-        src="/images/customers/logos/deriv.png"
-        alt="Deriv logo"
-        className="dark:invert object-contain opacity-50 hover:!opacity-60 max-w-20 max-h-10 !w-10 !h-10"
-        width={28}
-        height={28}
-      />
-    ),
+    avatar: {
+      src: '/images/customers/logos/deriv.png',
+      alt: 'Deriv logo',
+      className: 'dark:invert object-contain opacity-50 hover:!opacity-60 max-w-20 max-h-10 !w-10 !h-10',
+      width: 28,
+      height: 28,
+    },
     link: '/customers/deriv',
-    logo: (
-      <Image
-        draggable={false}
-        src="/images/solutions/neon/raunak-kathuria.jpg"
-        alt="Raunak Kathuria"
-        className="w-10 h-10 rounded-full overflow-hidden"
-        width={28}
-        height={28}
-      />
-    ),
+    logo: {
+      src: '/images/solutions/neon/raunak-kathuria.jpg',
+      alt: 'Raunak Kathuria',
+      className: 'w-10 h-10 rounded-full overflow-hidden',
+      width: 28,
+      height: 28,
+    },
   },
   why: {
     id: 'why-supabase',
     label: '',
-    heading: (
-      <>
-        Why companies moved <span className="text-foreground">to Supabase from Neon</span>
-      </>
-    ),
+    heading: 'Why companies moved to Supabase from Neon',
     subheading:
       'Build secure, scalable applications using a developer platform built for dependability.',
     features: [
       {
         id: 'speed',
-        icon: Timer,
+        icon: 'Timer',
         heading: 'Build fast and with confidence',
         subheading:
           'Supabase helps you go from prototype to production with built-in auth, real-time data, and observability. No setup or backend boilerplate required.',
@@ -135,7 +114,7 @@ const data = {
       },
       {
         id: 'migration',
-        icon: ArrowRight,
+        icon: 'ArrowRight',
         heading: 'Migrate from Neon with ease',
         subheading: 'Supabase is Postgres. Moving from Neon is a breeze.',
       },
