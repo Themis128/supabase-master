@@ -3,20 +3,13 @@
 import * as React from 'react'
 import * as RechartsPrimitive from 'recharts'
 
-import { cn } from '../../../lib/utils/cn'
 
+import { cn } from '../../../lib/utils/cn'
+import styles from './chart.module.css'
+import type { ChartConfig } from '../../../types/chart-config'
 // Format: { THEME_NAME: CSS_SELECTOR }
 const THEMES = { light: '', dark: '.dark' } as const
-
-export type ChartConfig = {
-  [k in string]: {
-    label?: React.ReactNode
-    icon?: React.ComponentType
-  } & (
-    | { color?: string; theme?: never }
-    | { color?: never; theme: Record<keyof typeof THEMES, string> }
-  )
-}
+export type { ChartConfig } from '../../../types/chart-config'
 
 type ChartContextProps = {
   config: ChartConfig
@@ -185,28 +178,20 @@ const ChartTooltipContent = React.forwardRef<
                 {formatter && item?.value !== undefined && item.name ? (
                   formatter(item.value, item.name, item, index, item.payload)
                 ) : (
-                  <>
+                  <React.Fragment>
                     {itemConfig?.icon ? (
                       <itemConfig.icon />
                     ) : (
                       !hideIndicator && (
                         <div
                           className={cn(
-                            'shrink-0 rounded-[2px] border-[--color-border] bg-[--color-bg]',
-                            {
-                              'h-2.5 w-2.5': indicator === 'dot',
-                              'w-1': indicator === 'line',
-                              'w-0 border-[1.5px] border-dashed bg-transparent':
-                                indicator === 'dashed',
-                              'my-0.5': nestLabel && indicator === 'dashed',
-                            }
+                            styles.indicator,
+                            indicator === 'dot' && styles.dot,
+                            indicator === 'line' && styles.line,
+                            indicator === 'dashed' && styles.dashed,
+                            nestLabel && indicator === 'dashed' && 'my-0.5'
                           )}
-                          style={
-                            {
-                              '--color-bg': indicatorColor,
-                              '--color-border': indicatorColor,
-                            } as React.CSSProperties
-                          }
+                          data-indicator-color={indicatorColor}
                         />
                       )
                     )}
@@ -229,7 +214,7 @@ const ChartTooltipContent = React.forwardRef<
                         </span>
                       )}
                     </div>
-                  </>
+                  </React.Fragment>
                 )}
               </div>
             )
@@ -239,7 +224,7 @@ const ChartTooltipContent = React.forwardRef<
     )
   }
 )
-ChartTooltipContent.displayName = 'ChartTooltip'
+ChartTooltipContent.displayName = 'ChartTooltipContent'
 
 const ChartLegend = RechartsPrimitive.Legend
 
@@ -281,10 +266,8 @@ const ChartLegendContent = React.forwardRef<
               <itemConfig.icon />
             ) : (
               <div
-                className="h-2 w-2 shrink-0 rounded-[2px]"
-                style={{
-                  backgroundColor: item.color,
-                }}
+                className={styles['legend-color']}
+                data-legend-color={item.color}
               />
             )}
             {itemConfig?.label}

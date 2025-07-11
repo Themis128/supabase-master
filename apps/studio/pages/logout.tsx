@@ -2,7 +2,7 @@ import { useRouter } from 'next/router'
 import { useEffect } from 'react'
 import { toast } from 'sonner'
 
-import { Loading } from 'components/ui/Loading'
+import { Loading } from 'ui'
 import { useSignOut } from 'lib/auth'
 import { NextPageWithLayout } from 'types'
 

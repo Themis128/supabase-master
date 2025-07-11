@@ -11,7 +11,7 @@ import { useProjectContext } from 'components/layouts/ProjectLayout/ProjectConte
 import { ButtonTooltip } from 'components/ui/ButtonTooltip'
 import DatabaseSelector from 'components/ui/DatabaseSelector'
 import { DateRangePicker } from 'components/ui/DateRangePicker'
-import { Loading } from 'components/ui/Loading'
+import { Loading } from 'ui'
 import NoPermission from 'components/ui/NoPermission'
 import { DEFAULT_CHART_CONFIG } from 'components/ui/QueryBlock/QueryBlock'
 import { AnalyticsInterval } from 'data/analytics/constants'

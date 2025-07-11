@@ -1,0 +1,39 @@
+.indicator {
+  border-radius: 2px;
+  border: 1px solid var(--color-border, transparent);
+  background: var(--color-bg, transparent);
+}
+
+/* Dynamic color for indicator using data attribute */
+.indicator[data-indicator-color] {
+  --color-bg: attr(data-indicator-color color);
+  --color-border: attr(data-indicator-color color);
+}
+
+.indicator.dot {
+  width: 1rem;
+  height: 1rem;
+}
+
+.indicator.line {
+  width: 0.25rem;
+  height: 1rem;
+}
+
+.indicator.dashed {
+  width: 0;
+  border-width: 1.5px;
+  border-style: dashed;
+  background: transparent;
+}
+
+.legend-color {
+  width: 0.5rem;
+  height: 0.5rem;
+  border-radius: 2px;
+  background: var(--legend-color, transparent);
+}
+
+.legend-color[data-legend-color] {
+  --legend-color: attr(data-legend-color color);
+}

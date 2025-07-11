@@ -3,7 +3,7 @@ import { LogsTableName } from 'components/interfaces/Settings/Logs/Logs.constant
 import LogsPreviewer from 'components/interfaces/Settings/Logs/LogsPreviewer'
 import DefaultLayout from 'components/layouts/DefaultLayout'
 import LogsLayout from 'components/layouts/LogsLayout/LogsLayout'
-import { Loading } from 'components/ui/Loading'
+import { Loading } from 'ui'
 import { useCurrentOrgPlan } from 'hooks/misc/useCurrentOrgPlan'
 import { useRouter } from 'next/router'
 import { useEffect } from 'react'

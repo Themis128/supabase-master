@@ -1,7 +1,7 @@
 import { useIsLoggedIn, useParams } from 'common'
 import APIAuthorizationLayout from 'components/layouts/APIAuthorizationLayout'
 import CopyButton from 'components/ui/CopyButton'
-import { Loading } from 'components/ui/Loading'
+import { Loading } from 'ui'
 import { createCliLoginSession } from 'data/cli/login'
 import { withAuth } from 'hooks/misc/withAuth'
 import Link from 'next/link'

@@ -1,3 +1,7 @@
+export * from './src/components/shadcn/ui/table'
+export * from './src/components/shadcn/ui/hover-card'
+export * from './src/components/shadcn/ui/breadcrumb'
+export type { ChartConfig } from './src/types/chart-config'
 export type { ButtonProps } from './src/components/Button/Button'
 // Markdown components
 
