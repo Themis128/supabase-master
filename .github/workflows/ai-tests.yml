@@ -24,9 +24,6 @@ jobs:
   test:
     runs-on: ubuntu-latest
 
-    env:
-      OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
-
     defaults:
       run:
         working-directory: ./packages/ai-commands
@@ -36,10 +33,6 @@ jobs:
         with:
           sparse-checkout: |
             packages
-      # - uses: pnpm/action-setup@v4
-      #   name: Install pnpm
-        with:
-          run_install: false
       - name: Use Node.js
         uses: actions/setup-node@v4
         with:
