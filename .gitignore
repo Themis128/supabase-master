@@ -137,7 +137,7 @@ gcloud.json
 # CLI version file
 .temp/cli-latest
 
-.pnpm-store/*
+
 
 # Sentry CLI config
 **/.sentryclirc

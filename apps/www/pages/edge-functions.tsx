@@ -27,6 +27,35 @@ const TimedAccordionPanels = dynamic(() => import('~/components/Sections/TimedAc
 const TimedAccordionSection = dynamic(() => import('~/components/Sections/TimedAccordionSection'))
 
 function EdgeFunctions() {
+  // Ensure heroSection.h1 is always a valid string
+  let heroSection = { ...(pageData.heroSection || {}) }
+  if (typeof heroSection.h1 !== 'string' || !heroSection.h1) {
+    console.warn('edge-functions: heroSection.h1 is missing or not a string. Using fallback value.')
+    heroSection.h1 = 'Supabase Edge Functions'
+  }
+  // Runtime warnings for missing data
+  if (!pageData.heroSection) {
+    console.warn('Warning: pageData.heroSection is missing')
+  }
+  if (!Array.isArray(pageData.highlightsSection)) {
+    console.warn('Warning: pageData.highlightsSection is missing or not an array')
+  }
+  if (!pageData.cardsSection || !Array.isArray(pageData.cardsSection.cards)) {
+    console.warn('Warning: pageData.cardsSection.cards is missing or not an array')
+  }
+  if (!pageData.globalPresenceSection) {
+    console.warn('Warning: pageData.globalPresenceSection is missing')
+  }
+  if (!pageData.o11y) {
+    console.warn('Warning: pageData.o11y is missing')
+  } else if (!('title' in pageData.o11y)) {
+    console.warn('Warning: pageData.o11y.title is missing')
+  }
+  if (!pageData.integratesWithSupabase) {
+    console.warn('Warning: pageData.integratesWithSupabase is missing')
+  } else if (!('title' in pageData.integratesWithSupabase)) {
+    console.warn('Warning: pageData.integratesWithSupabase.title is missing')
+  }
   const { basePath } = useRouter()
   const isXs = useBreakpoint(640)
   // pageData is now imported as an object, not a function
@@ -43,12 +72,14 @@ function EdgeFunctions() {
     FlutterIcon: FlutterIcon,
   }
 
-  const highlightsWithComponents = (pageData.highlightsSection || [])
-    .map((item) => ({
-      ...item,
-      svg: item.svg && svgMap[item.svg] ? React.createElement(svgMap[item.svg]) : null,
-    }))
-    .filter((item) => item && typeof item.title === 'string' && item.title.length > 0)
+  const highlightsWithComponents = Array.isArray(pageData.highlightsSection)
+    ? pageData.highlightsSection
+        .map((item) => ({
+          ...item,
+          svg: item.svg && svgMap[item.svg] ? React.createElement(svgMap[item.svg]) : null,
+        }))
+        .filter((item) => item && typeof item.title === 'string' && item.title.length > 0)
+    : []
 
   return (
     <>
@@ -68,10 +99,12 @@ function EdgeFunctions() {
       />
       <DefaultLayout>
         <ProductsNav activePage={PRODUCT_NAMES.FUNCTIONS} />
-        <ProductHeader
-          {...pageData.heroSection}
-          footer={<HighlightColumns highlights={highlightsWithComponents} />}
-        />
+        {heroSection ? (
+          <ProductHeader
+            {...heroSection}
+            footer={<HighlightColumns highlights={highlightsWithComponents} />}
+          />
+        ) : null}
         <SingleQuote
           id="quote"
           className="!pb-8 md:!pb-12 [&_q]:max-w-2xl"
@@ -94,31 +127,48 @@ function EdgeFunctions() {
         />
         <div className="overflow-hidden">
           <SectionContainer className="flex flex-col gap-4 lg:gap-8 !pb-0" id="examples">
-            <ExamplesCarousel {...pageData.examplesSection} />
+            {pageData.examplesSection ? <ExamplesCarousel {...pageData.examplesSection} /> : null}
           </SectionContainer>
         </div>
         <SectionContainer className="flex flex-col gap-4" id="developer-experience">
           <div>
-            <h2 className="h2">{pageData.localDXsection.title}</h2>
-            <p className="text-foreground-lighter lg:w-1/2">{pageData.localDXsection.paragraph}</p>
+            <h2 className="h2">
+              {pageData.cardsSection?.cards?.[0]?.label || 'First-class local dev experience'}
+            </h2>
+            <p className="text-foreground-lighter lg:w-1/2">
+              {pageData.cardsSection?.cards?.[0]?.paragraph || ''}
+            </p>
           </div>
           <div className="mt-4 md:mt-8">
             <LocalDXGrid />
           </div>
         </SectionContainer>
         <SectionContainer className="flex flex-col gap-4 lg:gap-8" id="global-presence">
-          <GlobalPresenceSection {...pageData.globalPresenceSection} />
+          {pageData.globalPresenceSection ? (
+            <GlobalPresenceSection {...pageData.globalPresenceSection} />
+          ) : null}
         </SectionContainer>
         <div className="overflow-hidden">
           <SectionContainer className="flex flex-col gap-4 lg:gap-8" id="observability">
-            <h2 className="h2">{pageData.o11y.title}</h2>
-            <TimedAccordionPanels {...pageData.o11y} />
+            <h2 className="h2">
+              {pageData.o11y && typeof pageData.o11y.title === 'string'
+                ? pageData.o11y.title
+                : 'Built-in observability'}
+            </h2>
+            {pageData.o11y ? <TimedAccordionPanels {...pageData.o11y} /> : null}
           </SectionContainer>
         </div>
         <div className="overflow-hidden">
           <SectionContainer className="flex flex-col gap-4 lg:gap-8" id="integrates-with-supabase">
-            <h2 className="h2">{pageData.integratesWithSupabase.title}</h2>
-            <TimedAccordionSection tabs={pageData.integratesWithSupabase.useCases} />
+            <h2 className="h2">
+              {pageData.integratesWithSupabase &&
+              typeof pageData.integratesWithSupabase.title === 'string'
+                ? pageData.integratesWithSupabase.title
+                : 'Integrates with Supabase'}
+            </h2>
+            {pageData.integratesWithSupabase?.useCases ? (
+              <TimedAccordionSection tabs={pageData.integratesWithSupabase.useCases} />
+            ) : null}
           </SectionContainer>
         </div>
         <ProductsCta currentProduct={PRODUCT_SHORTNAMES.FUNCTIONS} className="!pt-0 lg:!pt-16" />

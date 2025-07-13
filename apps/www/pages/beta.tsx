@@ -1,3 +1,4 @@
+This file has been removed as it was obsolete or problematic.
 import React from 'react'
 import Container from 'components/Container'
 import CountUp from 'components/CountUp'

@@ -5,7 +5,17 @@ import React, { useState } from 'react'
 import { useWindowSize } from 'react-use'
 
 import { useIsLoggedIn, useUser } from 'common'
-import { Button, buttonVariants, cn, NavigationMenu, NavigationMenuContent, NavigationMenuItem, NavigationMenuLink, NavigationMenuList, NavigationMenuTrigger } from 'ui'
+import {
+  Button,
+  buttonVariants,
+  cn,
+  NavigationMenu,
+  NavigationMenuContent,
+  NavigationMenuItem,
+  NavigationMenuLink,
+  NavigationMenuList,
+  NavigationMenuTrigger,
+} from 'ui'
 
 import ScrollProgress from '~/components/ScrollProgress'
 import { getMenu } from '~/data/nav'
@@ -82,6 +92,7 @@ const Nav = ({ hideNavbar, stickyNavbar = true }: Props) => {
             `relative z-40 border-default border-b backdrop-blur-sm transition-opacity`,
             showLaunchWeekNavMode && 'border-muted border-b bg-alternative/50'
           )}
+          data-testid="main-nav"
         >
           <div className="relative flex justify-between h-16 mx-auto lg:container lg:px-16 xl:px-20">
             <div className="flex items-center px-6 lg:px-0 flex-1 sm:items-stretch justify-between">
@@ -94,7 +105,7 @@ const Nav = ({ hideNavbar, stickyNavbar = true }: Props) => {
                   className="hidden pl-8 sm:space-x-4 lg:flex h-16"
                   viewportClassName="rounded-xl bg-background"
                 >
-                  <NavigationMenuList>
+                  <NavigationMenuList data-testid="nav-menu-list">
                     {menu.primaryNav.map((menuItem) =>
                       menuItem.hasDropdown ? (
                         <NavigationMenuItem className="text-sm font-medium" key={menuItem.title}>
@@ -125,7 +136,9 @@ const Nav = ({ hideNavbar, stickyNavbar = true }: Props) => {
                 </NavigationMenu>
               </div>
               <div className="flex items-center gap-2 opacity-0 animate-fade-in !scale-100 delay-300">
-                <GitHubButton />
+                <span data-testid="nav-github-btn">
+                  <GitHubButton />
+                </span>
 
                 {isLoggedIn ? (
                   <>
@@ -171,7 +184,9 @@ const Nav = ({ hideNavbar, stickyNavbar = true }: Props) => {
               showLaunchWeekNavMode={showLaunchWeekNavMode}
             />
           </div>
-          <MobileMenu open={open} setOpen={setOpen} menu={menu} />
+          <span data-testid="nav-mobile-menu">
+            <MobileMenu open={open} setOpen={setOpen} menu={menu} />
+          </span>
         </nav>
 
         <ScrollProgress />

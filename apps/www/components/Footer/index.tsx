@@ -48,7 +48,10 @@ const Footer = (props: Props) => {
               More on Security
             </Link>
           </div>
-          <ul className="flex flex-col md:flex-row gap-2 md:gap-8 justify-center md:items-center">
+          <ul
+            className="flex flex-col md:flex-row gap-2 md:gap-8 justify-center md:items-center"
+            data-testid="footer-cert-list"
+          >
             <li className="flex items-center gap-2 whitespace-nowrap flex-nowrap">
               {/* Removed: <CheckIcon /> (missing icon) */} SOC2 Type 2{' '}
               <span className="text-foreground-lighter hidden sm:inline">Certified</span>
@@ -123,43 +126,64 @@ const Footer = (props: Props) => {
                 return (
                   <div key={`footer_${segment.title || segIdx}`}>
                     <h6 className="text-foreground overwrite text-base">{segment.title}</h6>
-                    <ul className="mt-4 space-y-2">
-                      {segment.links.filter(Boolean).map((linkObj, idx) => {
-                        if (!linkObj) return null
-                        const { component: Component, text, url } = linkObj
-                        const children = (
-                          <div
-                            className={`text-sm transition-colors ${
-                              url || Component
-                                ? 'text-foreground-lighter hover:text-foreground'
-                                : 'text-muted hover:text-foreground-lighter'
-                            } `}
-                          >
-                            {text}
-                            {!url && !Component && (
-                              <div className="ml-2 inline text-xs xl:ml-0 xl:block 2xl:ml-2 2xl:inline">
-                                <Badge size="small">Coming soon</Badge>
-                              </div>
-                            )}
-                          </div>
-                        )
-                        return (
-                          <li key={`${segment.title || segIdx}_link_${idx}`}>
-                            {url ? (
-                              url.startsWith('https') ? (
-                                <a href={url}>{children}</a>
-                              ) : (
-                                <Link href={url}>{children}</Link>
+                    {Array.isArray(segment.links) && segment.links.filter(Boolean).length > 0 && (
+                      <ul className="mt-4 space-y-2" data-testid="footer-links-list">
+                        {
+                          segment.links
+                            .filter(Boolean)
+                            .map((linkObj, idx) => {
+                              if (!linkObj) return null
+                              const { component: Component, text, url } = linkObj
+                              let content = null
+                              if (url) {
+                                content = url.startsWith('https') ? (
+                                  <a
+                                    href={url}
+                                    className={`text-sm transition-colors text-foreground-lighter hover:text-foreground`}
+                                  >
+                                    {text}
+                                  </a>
+                                ) : (
+                                  <Link
+                                    href={url}
+                                    className={`text-sm transition-colors text-foreground-lighter hover:text-foreground`}
+                                  >
+                                    {text}
+                                  </Link>
+                                )
+                              } else if (Component) {
+                                // Render the custom component inside an <li> wrapper, not as the root
+                                content = null
+                              } else {
+                                content = (
+                                  <span className="text-sm transition-colors text-muted hover:text-foreground-lighter">
+                                    {text}
+                                    <span className="ml-2 inline text-xs xl:ml-0 xl:block 2xl:ml-2 2xl:inline">
+                                      <Badge size="small">Coming soon</Badge>
+                                    </span>
+                                  </span>
+                                )
+                              }
+                              // Always return <li> as direct child of <ul>
+                              if (Component) {
+                                return (
+                                  <li key={`${segment.title || segIdx}_link_${idx}`}>
+                                    <Component>
+                                      <span className="text-sm transition-colors text-foreground-lighter hover:text-foreground">
+                                        {text}
+                                      </span>
+                                    </Component>
+                                  </li>
+                                )
+                              }
+                              return (
+                                <li key={`${segment.title || segIdx}_link_${idx}`}>{content}</li>
                               )
-                            ) : Component ? (
-                              <Component>{children}</Component>
-                            ) : (
-                              children
-                            )}
-                          </li>
-                        )
-                      })}
-                    </ul>
+                            })
+                            .filter(Boolean) // Remove any accidental nulls
+                        }
+                      </ul>
+                    )}
                   </div>
                 )
               })}

@@ -11,7 +11,7 @@ Edit the `.env.local` file with your credentials and environment.
 ### Install the playwright browser
 
 ```bash
-pnpm exec playwright install
+npx playwright install
 ```
 
 ## Environments
@@ -69,13 +69,13 @@ Check the `package.json` for the available commands and environments.
 #### Example:
 
 ```bash
-pnpm run e2e
+npm run e2e
 ```
 
 With Playwright UI:
 
 ```bash
-pnpm run e2e -- --ui
+npm run e2e -- --ui
 ```
 
 ---
@@ -83,28 +83,28 @@ pnpm run e2e -- --ui
 ## Tips for development
 
 - Read [Playwright Best Practices](https://playwright.dev/docs/best-practices)
-- Use `pnpm run e2e -- --ui` to get the playwright UI.
+- Use `npm run e2e -- --ui` to get the playwright UI.
 - Add the tests in `examples/examples.ts` to Cursor as context.
 - Add messages to expect statements to make them easier to debug.
 
 Example:
 
 ```ts
-await expect(page.getByRole('heading', { name: 'Logs & Analytics' }), {
-  message: 'Logs heading should be visible',
-}).toBeVisible()
+await expect(page.getByRole("heading", { name: "Logs & Analytics" }), {
+  message: "Logs heading should be visible",
+}).toBeVisible();
 ```
 
 - Use the test utility instead of playwrights test.
 
 ```ts
-import { test } from '../utils/test'
+import { test } from "../utils/test";
 ```
 
 - Use the PWDEBUG environment variable to debug the tests.
 
 ```bash
-PWDEBUG=1 pnpm run e2e -- --ui
+PWDEBUG=1 npm run e2e -- --ui
 ```
 
 ---
@@ -138,6 +138,6 @@ Example:
 
 ```ts
 await page.route(`*/**/logs.all*`, async (route) => {
-  await route.fulfill({ body: JSON.stringify(mockAPILogs) })
-})
+  await route.fulfill({ body: JSON.stringify(mockAPILogs) });
+});
 ```

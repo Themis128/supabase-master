@@ -4,7 +4,6 @@
   "main": "next.js",
   "license": "MIT",
   "scripts": {
-    "preinstall": "npx only-allow pnpm",
     "clean": "rimraf node_modules"
   },
   "dependencies": {
